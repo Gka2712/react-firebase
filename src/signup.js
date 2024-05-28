@@ -2,6 +2,7 @@ import {useState} from 'react'
 import {auth}from './firebase'
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { useAuthContext } from './authcontext';
+import {Link} from 'react-router-dom';
 const SignUp=()=>{
     const {user}=useAuthContext();
     const handleSubmit=async(event)=>{
@@ -30,6 +31,9 @@ const SignUp=()=>{
             </div>
             <div>
                 <button>登録</button>
+            </div>
+            <div>
+                新規登録は<Link to="/login">こちら</Link>から
             </div>
         </form>
        </div> 
