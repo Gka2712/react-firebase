@@ -29,6 +29,9 @@ const Home = () => {
     const seconds=('0'+date.getSeconds()).slice(-2);
     return `${month}/${day} ${hours}:${minutes}:${seconds} `;
   };
+  const eventadd=()=>{
+    navigate('/eventadd');
+  };
   useEffect(()=>{
     const fetchData=async()=>{
       if(user){
@@ -53,23 +56,18 @@ const Home = () => {
       <div>
         <h1>ホームページ</h1>
         <button onClick={handleLogout}>ログアウト</button>
-        <h2>イベント</h2>
-        <table border="1">
-          <thead>
-            <th>イベント</th>
-            <th>開催日時</th>
-            <th>場所</th>
-          </thead>
-          <tbody>
-            {data.map(item=>(
-              <tr key={item.id}>
-                <td>{item.name}</td>
-                <td>{formatDate(item.day)}</td>
-                <td>{item.place}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <button onClick={eventadd}>イベントの追加</button>
+        <h4>イベント</h4>
+        <div className='container'>
+          {data.map(item=>(
+            <div key={item.id} className="item">
+              <div className='item1'>{item.name}</div>
+              <div>開催日時:{formatDate(item.day)}</div>
+              <img src={item.url} />
+              <div>場所:{item.place}</div>
+            </div>
+          ))}
+        </div>
       </div>
     );
   }
